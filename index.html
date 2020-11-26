@@ -1,0 +1,57 @@
+<style>
+    #countdown {
+      font-family: Century Gothic;
+      font-size: 2rem;
+      color: white;
+      -webkit-text-stroke: 0.085rem #c22026;
+      letter-spacing: 0.09em;
+    }
+    .separator {
+      font-size: 1.2rem;
+    }
+  </style>
+  
+  <strong>
+    <p id="countdown">
+      <span id="days">_</span><span class="separator">D</span>
+      <span id="hours">_</span><span class="separator">H</span>
+      <span id="minutes">_</span><span class="separator">M</span>
+      <span id="seconds">_</span><span class="separator">S</span>
+    </p>
+  </strong>
+  
+  <script>
+    // Set the date we're counting down to
+    const countDownDate = new Date("Dec 1, 2020 0:0:00").getTime();
+  
+    // Update the count down every 1 second
+    let x = setInterval(() => {
+      // Get today's time
+      let now = new Date().getTime();
+  
+      // Find the distance between now and the countdown date
+      let distance = countDownDate - now;
+  
+      // Time calculations for days, hours, and seconds
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+      // --
+      // -- output the result
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+  
+      // If the count down is over, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").textContent = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+  
